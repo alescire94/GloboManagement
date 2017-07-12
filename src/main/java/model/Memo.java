@@ -7,16 +7,10 @@ import java.util.Date;
  * Created by Alessandro on 24/04/2017.
  */
 @Entity
-public class Memo  {
+public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date data;
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date dataAnnoPrecedente;
     @Column
     private String notePagamento;
     @Column(nullable = false)
@@ -29,29 +23,14 @@ public class Memo  {
     private String note;
     @OneToOne
     private Memo memoPassato;
+    public Memo(){}
+    public Memo(String descrizione) {
 
-    public Memo(Date data, Date dataAnnoPrecedente, String descrizione, Memo memoPassato) {
-        this.data = data;
-        this.dataAnnoPrecedente = dataAnnoPrecedente;
         this.descrizione = descrizione;
-        this.memoPassato = memoPassato;
+
     }
 
-    public Date getData() {
-        return data;
-    }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public Date getDataAnnoPrecedente() {
-        return dataAnnoPrecedente;
-    }
-
-    public void setDataAnnoPrecedente(Date dataAnnoPrecedente) {
-        this.dataAnnoPrecedente = dataAnnoPrecedente;
-    }
 
     public String getNotePagamento() {
         return notePagamento;
@@ -99,5 +78,43 @@ public class Memo  {
 
     public void setMemoPassato(Memo memoPassato) {
         this.memoPassato = memoPassato;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Memo memo = (Memo) o;
+
+
+        return descrizione.equals(memo.descrizione);
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = 31 + descrizione.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Memo{" +
+                ", notePagamento='" + notePagamento + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", importo=" + importo +
+                ", saldo=" + saldo +
+                ", note='" + note + '\'' +
+                ", memoPassato=" + memoPassato +
+                '}';
     }
 }
