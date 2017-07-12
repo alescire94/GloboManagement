@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">pippo</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/globoManagement</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <mapping class="model.Bevanda"></mapping>
+        <mapping class = "model.Pizza"></mapping>
+        <mapping class = "model.Cliente"></mapping>
+        <mapping class = "model.Fritto"></mapping>
+        <mapping class="model.ordini.Ordine"></mapping>
+        <mapping class = "model.ordini.OrdineConsegna"></mapping>
+        <mapping class = "model.ordini.OrdineNegozio"></mapping>
+
+    </session-factory>
+</hibernate-configuration>
